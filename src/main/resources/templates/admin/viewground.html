@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/adminbase::layout(~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section style="height: 530px;">
+		<div class="container-fluid">
+			<div class="row mt-4">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header fs-4 text-center custom-bg text-white rounded">
+							<p class="fs-4 pt-2">View All Grounds</p>
+
+						</div>
+						<div class="card-body">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th scope="col">Ground</th>
+										<th scope="col">Name</th>
+										<th scope="col">Description</th>
+										<th scope="col">Ground Width</th>
+										<th scope="col">Ground Height</th>
+										<th scope="col">Ground Length</th>
+										<th scope="col">Price</th>
+										<th scope="col">Status</th>
+										<th scope="col" class="text-start">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+
+									<tr>
+										<th scope="row">1</th>
+										<td>Mark</td>
+										<td>Otto</td>
+										<td>@mdo</td>
+										<td>Mark</td>
+										<td>Otto</td>
+										<td>@mdo</td>
+										<td>Otto</td>
+									
+										<td>
+											<a class="btn btn-primary btn-sm"><i
+													class="fa-solid fa-pen-to-square "></i>Edit</a>
+											<a class="btn btn-danger btn-sm"><i class="fa-solid fa-trash "></i>
+												Delete</a>
+											
+										</td>
+									</tr>
+
+								</tbody>
+							</table>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

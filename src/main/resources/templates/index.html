@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title th:text="${title}">Insert title here</title>
+</head>
+
+<body>
+	<section>
+		<main>
+			<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-inner">
+					<div class="carousel-item active" style="background-image: url('img/bg.jpeg')">
+						<div class="carousel-caption">
+							<h1>Unleash Your Sporting Passion</h1>
+							<p>
+								Discover the thrill of booking top-notch turfs at your
+								fingertips. Elevate your game with MatchSpot!
+							</p>
+							<a href="#featured-turfs" class="btn btn-success btn-lg">Explore Turfs</a>
+						</div>
+					</div>
+					<div class="carousel-item" style="background-image: url('img/bg2.jpg')">
+						<div class="carousel-caption">
+							<h1>Find Your Perfect Playground</h1>
+							<p>
+								From soccer to cricket, we have the best turfs for every sport.
+								Book now and start playing!
+							</p>
+							<a href="#featured-turfs" class="btn btn-success btn-lg">Book Now</a>
+						</div>
+					</div>
+					<div class="carousel-item" style="background-image: url('img/bg3.jpg')">
+						<div class="carousel-caption">
+							<h1>Your Sports Destination Awaits</h1>
+							<p>
+								Join us and experience the joy of sports. Book turfs, meet
+								players, and play your heart out!
+							</p>
+							<a href="#featured-turfs" class="btn btn-success btn-lg">Join Now</a>
+						</div>
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+		</main>
+	</section>
+
+</body>
+
+</html>

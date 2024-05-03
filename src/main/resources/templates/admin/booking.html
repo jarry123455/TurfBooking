@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/adminbase::layout(~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section style="height: 530px;">
+		<div class="container-fluid">
+			<div class="row mt-4">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header fs-4 text-center custom-bg text-white rounded">
+							<p class="fs-4 pt-2">View All Booking</p>
+
+						</div>
+						<div class="card-body">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th scope="col">Ground</th>
+										<th scope="col">Ground Name</th>
+										<th scope="col">Booking Id</th>
+										<th scope="col">Customer Name</th>
+										<th scope="col">Customer Contact</th>
+										<th scope="col">Booking Date</th>
+										<th scope="col">Booking Time Slot</th>
+										<th scope="col">Booking Status</th>
+										<th scope="col">Total Payable about</th>
+										<th scope="col">Payable Mode</th>
+										<th scope="col">Verify Booking Status</th>
+									</tr>
+								</thead>
+								<tbody>
+
+									<tr>
+										<th scope="row">1</th>
+										<td>Mark</td>
+										<td>Otto</td>
+										<td>@mdo</td>
+										<td>Mark</td>
+										<td>Otto</td>
+										<td>@mdo</td>
+										<td>Otto</td>
+										<td>@mdo</td>
+										<td>COD</td>
+										<td>
+											<a class="btn btn-primary btn-sm"><i
+													class="fa-solid fa-pen-to-square "></i>Approve</a>
+											<a class="btn btn-danger btn-sm"><i class="fa-solid fa-trash "></i>
+												Reject</a>
+										</td>
+
+
+									</tr>
+
+								</tbody>
+							</table>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>
