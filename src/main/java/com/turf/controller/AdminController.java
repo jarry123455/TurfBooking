@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,8 +42,11 @@ public class AdminController {
 	}
 
 	@GetMapping("/addground")
-	public String addground() {
+	public String addground(Model model) {
 
+		List<Category> allCategory = categoryService.getAllCategory();
+		model.addAttribute("allcategory", allCategory);
+		model.addAttribute("title", "Add Ground");
 		return "admin/addground";
 	}
 
