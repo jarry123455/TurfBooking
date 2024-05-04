@@ -7,7 +7,8 @@
 </head>
 
 <body>
-	<section style="height: 530px;">
+	<!--<section style="height: 530px;">-->
+	<section>
 		<div class="container-fluid">
 			<div class="row mt-4">
 				<div class="col-md-12">
@@ -28,20 +29,24 @@
 										<th scope="col">Ground Length</th>
 										<th scope="col">Price</th>
 										<th scope="col">Status</th>
-										<th scope="col" class="text-start">Action</th>
+										<th scope="col">Category</th>
+										<th scope="col">Action</th>
 									</tr>
 								</thead>
 								<tbody>
 
-									<tr>
-										<th scope="row">1</th>
-										<td>Mark</td>
-										<td>Otto</td>
-										<td>@mdo</td>
-										<td>Mark</td>
-										<td>Otto</td>
-										<td>@mdo</td>
-										<td>Otto</td>
+									<tr th:each="gr,g:${grounds}">
+										<td><img th:src="@{'/img/ground_img/' + ${gr.image}}"
+										width="140px" height="110px" /></td>
+										<td>[[${gr.name}]]</td>
+										<td>[[${gr.description}]]</td>
+										<td>[[${gr.width}]]</td>
+										<td>[[${gr.height}]]</td>
+										<td>[[${gr.length}]]</td>
+										<td>[[${gr.price}]]</td>
+										<td>[[${gr.isActive}]]</td>
+										<td>[[${gr.category}]]</td>
+										
 									
 										<td>
 											<a class="btn btn-primary btn-sm"><i

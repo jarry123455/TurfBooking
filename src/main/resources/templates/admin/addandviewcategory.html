@@ -14,11 +14,18 @@
 					<div class="card">
 						<div class="card-header text-center fs-4 custom-bg text-white">
 							<p class="fs-4 mt-2">Add Ground Category</p>
+							<th:block th:if="${session.succMsg}">
+								<p class="text-success fw-bold">[[${session.succMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
+							<th:block th:if="${session.errMsg}">
+								<p class="text-danger fw-bold">[[${session.errMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
 
-							
 						</div>
 						<div class="card-body">
-							<form >
+							<form action="/admin/saveCategory" method="post" enctype="multipart/form-data">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="name"
 										placeholder="Enter Ground Category" required />
@@ -70,20 +77,21 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
+									<tr th:each="cat,c:${categories}">
+
+										<td><img th:src="@{'/img/category_img/'+${cat.imageName}}"
+										width="80px" height="80px"/></td>
+										<td>[[${cat.name}]]</td>
+										<td>[[${cat.isActive}]]</td>
 										
-										<td>Mark</td>
-										<td>Otto</td>
-										<td>@mdo</td>
-										<td>Mark</td>
-										
-									
+
+
 										<td>
 											<a class="btn btn-primary btn-sm"><i
 													class="fa-solid fa-pen-to-square "></i>Edit</a>
 											<a class="btn btn-danger btn-sm"><i class="fa-solid fa-trash "></i>
 												Delete</a>
-											
+
 										</td>
 									</tr>
 								</tbody>

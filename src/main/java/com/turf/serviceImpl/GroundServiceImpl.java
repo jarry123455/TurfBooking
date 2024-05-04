@@ -1,5 +1,7 @@
 package com.turf.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,12 @@ public class GroundServiceImpl implements GroundService {
 	public Ground saveGround(Ground ground) {
 		
 		return groundRepository.save(ground);
+	}
+
+	@Override
+	public List<Ground> getAllGround() {
+		
+		return groundRepository.findAll();
 	}
 
 }

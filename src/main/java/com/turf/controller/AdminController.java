@@ -9,6 +9,7 @@ import java.nio.file.StandardCopyOption;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,9 +17,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import com.turf.enities.Ground;
-import com.turf.service.GroundService;
 
+import com.turf.enities.Category;
+import com.turf.enities.Ground;
+import com.turf.service.CategoryService;
+import com.turf.service.GroundService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -27,6 +30,9 @@ public class AdminController {
 
 	@Autowired
 	private GroundService groundService;
+
+	@Autowired
+	private CategoryService categoryService;
 
 	@GetMapping("/")
 	public String admin() {
@@ -77,8 +83,10 @@ public class AdminController {
 	}
 
 	@GetMapping("/viewground")
-	public String viewground() {
+	public String viewground(Model model) {
 
+		model.addAttribute("grounds", groundService.getAllGround());
+		model.addAttribute("title", "View All Ground");
 		return "admin/viewground";
 	}
 
@@ -101,9 +109,47 @@ public class AdminController {
 	}
 
 	@GetMapping("/addandviewcategory")
-	public String addandviewcategory() {
+	public String addandviewcategory(Model model) {
 
+		model.addAttribute("categories", categoryService.getAllCategory());
+		model.addAttribute("title","Add And View Category");
 		return "admin/addandviewcategory";
+	}
+
+	@PostMapping("/saveCategory")
+	public String saveCategory(@ModelAttribute Category category, @RequestParam("file") MultipartFile file,
+			HttpSession session) throws IOException {
+		String imageName = file != null ? file.getOriginalFilename() : "default.jpg";
+		category.setImageName(imageName);
+
+		Boolean existCategory = categoryService.existsByName(category.getName());
+
+		if (existCategory) {
+
+			session.setAttribute("errMsg", "Category Name Already exits");
+		} else {
+			Category saveCategory = categoryService.saveCategory(category);
+
+			if (ObjectUtils.isEmpty(saveCategory)) {
+				session.setAttribute("errMsg", "Not Saved ! Internal Server Error");
+			} else {
+
+				String uploadDir = "static/img/category_img";
+
+				// Create directory if it does not exist
+				File directory = new File(uploadDir);
+				if (!directory.exists()) {
+					directory.mkdirs();
+				}
+
+				Path path = Paths.get(uploadDir + File.separator + file.getOriginalFilename());
+				System.out.println(path);
+				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+
+				session.setAttribute("succMsg", "Saved Successfully");
+			}
+		}
+		return "redirect:/admin/addandviewcategory";
 	}
 
 }
