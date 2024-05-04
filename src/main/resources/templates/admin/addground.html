@@ -77,8 +77,7 @@
 									<div class="col">
 										<select name="category" class="form-control">
 											<option>--select--</option>
-											<option>Cricket</option>
-											<option>--select--</option>
+											<option th:each="c:${allcategory}">[[${c.name}]]</option>
 										</select>
 									</div>
 								</div>
