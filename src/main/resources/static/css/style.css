@@ -27,13 +27,13 @@ a.nav-link:hover{
     transition: .3s ease-in-out;
 }
 
-.customer-link{
+a.login-link{
     border-radius: 4px;
     background: #08d776;
    color: white !important;
    margin-right: 0.5em;
+   padding: .5em 1.5em !important;
 }
-
 #logo {
     color: #28a745;
     padding: .4em;
