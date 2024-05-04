@@ -14,13 +14,21 @@
 					<div class="card">
 						<div class="card-header text-center fs-4 mt-3 mb-2 Main text-white">
 							<p class="fs-3">Add Ground</p>
+							<th:block th:if="${session.succMsg}">
+								<p class="text-success fw-bold">[[${session.succMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
+							<th:block th:if="${session.errMsg}">
+								<p class="text-danger fw-bold">[[${session.errMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
 
 						</div>
 						<div class="card-body">
-							<form>
+							<form action="/admin/saveGround" method="post" enctype="multipart/form-data">
 								<div class="mb-3">
-									<input type="text" name="title" class="form-control"
-										placeholder="Enter Ground Name" />
+									<input type="text" name="name" class="form-control"
+										placeholder="Enter Ground Name" required />
 								</div>
 								<div class="mb-3">
 									<textarea name="description" id="" rows="1" class="form-control"
