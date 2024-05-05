@@ -1,7 +1,6 @@
 package com.turf.service;
 
 import java.util.List;
-
 import com.turf.enities.Category;
 
 public interface CategoryService {
@@ -11,5 +10,7 @@ public interface CategoryService {
 	public boolean existsByName(String name);
 	
 	public List<Category> getAllCategory();
+	
+	public Category getCategoryById(int id);
 
 }

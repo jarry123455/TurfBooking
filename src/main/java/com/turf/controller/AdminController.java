@@ -44,8 +44,7 @@ public class AdminController {
 	public String addground(Model model) {
 
 		List<Category> allCategory = categoryService.getAllCategory();
-		model.addAttribute("allcategory", allCategory);
-		model.addAttribute("title", "Add Ground");
+		model.addAttribute("allCategory", allCategory);
 		return "admin/addground";
 	}
 	
@@ -191,5 +190,12 @@ public class AdminController {
 		}
 		return "redirect:/admin/addandviewcategory";
 	}
+	
+	@GetMapping("/editCategory")
+	public String editCategory() {
+		
+		return "/admin/editCategory";
+	}
 
+	
 }

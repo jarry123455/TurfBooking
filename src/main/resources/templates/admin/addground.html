@@ -14,10 +14,17 @@
 					<div class="card">
 						<div class="card-header text-center fs-4 mt-3 mb-2 Main text-white">
 							<p class="fs-3">Add Ground</p>
-
+							<th:block th:if="${session.succMsg}">
+								<p class="text-success fw-bold">[[${session.succMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
+							<th:block th:if="${session.errMsg}">
+								<p class="text-danger fw-bold">[[${session.errMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
 						</div>
 						<div class="card-body">
-							<form>
+							<form action="/admin/saveGround" method="post" enctype="multipart/form-data">
 								<div class="mb-3">
 									<input type="text" name="title" class="form-control"
 										placeholder="Enter Ground Name" />
@@ -69,8 +76,7 @@
 									<div class="col">
 										<select name="category" class="form-control">
 											<option>--select--</option>
-											<option>Cricket</option>
-											<option>--select--</option>
+											<option th:each="c:${allCategory}">[[${c.name}]]</option>
 										</select>
 									</div>
 								</div>
