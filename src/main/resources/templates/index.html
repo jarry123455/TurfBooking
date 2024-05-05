@@ -1,102 +1,59 @@
-<!DOCTYPE html>
-<html lang="en" >
+ <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-    <!-- custom css -->
-    <link rel="stylesheet" href="css/style.css" />
-
-    <title>MatchSpot</title>
+	<meta charset="ISO-8859-1">
+	<title th:text="${title}">Insert title here</title>
 </head>
 
 <body>
-    <!---------------- Navbar ---------------->
-    <nav id="nav" class="navbar navbar-expand-lg navbar-light">
-        <div class="container-xl">
-            <h1 id="logo" class="navbar-brand">MatchSpot</h1>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link text-success-emphasis" href="#heroCarousel">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#f-grounds">Featured grounds</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#abt-us">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact-us">Contact Us</a>
-                    </li>
-                </ul>
-                <ul id="registerlinks" class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link register-btn text-success me-3" href="/register">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link login-link" href="/login">Login</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!--------------- Hero section --------------->
-    <main>
-        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active" style="background-image: url('img/bg.jpeg')">
-                    <div class="carousel-caption">
-                        <h1>Unleash Your Sporting Passion</h1>
-                        <p>
-                            Discover the thrill of booking top-notch turfs at your
-                            fingertips. Elevate your game with MatchSpot!
-                        </p>
-                        <a href="#featured-turfs" class="btn btn-success btn-lg">Explore Turfs</a>
-                    </div>
-                </div>
-                <div class="carousel-item" style="background-image: url('img/bg2.jpg')">
-                    <div class="carousel-caption">
-                        <h1>Find Your Perfect Playground</h1>
-                        <p>
-                            From soccer to cricket, we have the best turfs for every sport.
-                            Book now and start playing!
-                        </p>
-                        <a href="#featured-turfs" class="btn btn-success btn-lg">Book Now</a>
-                    </div>
-                </div>
-                <div class="carousel-item" style="background-image: url('img/bg3.jpg')">
-                    <div class="carousel-caption">
-                        <h1>Your Sports Destination Awaits</h1>
-                        <p>
-                            Join us and experience the joy of sports. Book turfs, meet
-                            players, and play your heart out!
-                        </p>
-                        <a href="#featured-turfs" class="btn btn-success btn-lg">Join Now</a>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </main>
-    <!--------------- Turf section --------------->
-    <section class="turf-section">
+	<section>
+		<main>
+			<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-inner">
+					<div class="carousel-item active" style="background-image: url('img/bg.jpeg')">
+						<div class="carousel-caption">
+							<h1>Unleash Your Sporting Passion</h1>
+							<p>
+								Discover the thrill of booking top-notch turfs at your
+								fingertips. Elevate your game with MatchSpot!
+							</p>
+							<a href="#featured-turfs" class="btn btn-success btn-lg">Explore Turfs</a>
+						</div>
+					</div>
+					<div class="carousel-item" style="background-image: url('img/bg2.jpg')">
+						<div class="carousel-caption">
+							<h1>Find Your Perfect Playground</h1>
+							<p>
+								From soccer to cricket, we have the best turfs for every sport.
+								Book now and start playing!
+							</p>
+							<a href="#featured-turfs" class="btn btn-success btn-lg">Book Now</a>
+						</div>
+					</div>
+					<div class="carousel-item" style="background-image: url('img/bg3.jpg')">
+						<div class="carousel-caption">
+							<h1>Your Sports Destination Awaits</h1>
+							<p>
+								Join us and experience the joy of sports. Book turfs, meet
+								players, and play your heart out!
+							</p>
+							<a href="/register" class="btn btn-success btn-lg">Join Now</a>
+						</div>
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+		</main>
+	</section>
+	<section class="turf-section">
         <h2 id="f-grounds" class="text-center mb-4 text-success">
             Featured Grounds
         </h2>
@@ -111,7 +68,9 @@
                                 Perfect your cricket skills on our well-maintained turfs. Book
                                 now and enjoy a great game!
                             </p>
-                            <a class="turf-card-button" href="grounds">Book Now</a>
+                            <!--<button class="turf-card-button">Book Now</button>-->
+                            <a href="/grounds" class="turf-card-button" style="text-decoration: none;">Book Now
+							</a>
                         </div>
                     </div>
                 </div>
@@ -124,7 +83,7 @@
                                 Experience the thrill of football on our premium turfs. Book
                                 now and score some goals!
                             </p>
-                            <a class="turf-card-button" href="grounds">Book Now</a>
+                            <button class="turf-card-button">Book Now</button>
                         </div>
                     </div>
                 </div>
@@ -137,122 +96,14 @@
                                 Dribble and shoot hoops on our basketball turfs. Book now and
                                 enjoy the game!
                             </p>
-                            <a class="turf-card-button " href="grounds" >Book Now</a>
+                            <button class="turf-card-button">Book Now</button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- About Us section -->
-    <section id="abt-us" class="about-section">
-        <div class="container">
-            <div class="row">
-                <h2 class="section-heading mb-5 text-success text-center">
-                    About Us
-                </h2>
-
-                <div class="col-lg-6">
-                    <img src="img/about-image.jpg" class="img-fluid" alt="About Us Image" />
-                </div>
-                <div class="col-lg-6">
-                    <p class="section-text">
-                        At MatchSpot, we're passionate about sports and recreation. Our
-                        mission is to provide sports clubs and enthusiasts with a seamless
-                        platform to book turfs and facilities hassle-free. With our
-                        user-friendly app, you can explore and book the best turfs for
-                        your favorite sports.
-                    </p>
-                    <p class="section-text">
-                        Our team is dedicated to ensuring that you have a fantastic
-                        experience every time you use MatchSpot. Whether you're a sports
-                        club looking to manage bookings or an individual searching for the
-                        perfect turf, MatchSpot has you covered.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Testimonials section -->
-    <section class="testimonials-section">
-        <div class="container">
-            <h2 class="section-heading text-center text-success mb-5">
-                What Our Customers Say
-            </h2>
-            <div class="row">
-                <div class="col-lg-4 mb-4">
-                    <div class="testimonial-card">
-                        <div class="testimonial-text">
-                            "Booking a turf through MatchSpot was so easy and convenient. I
-                            highly recommend it to all sports enthusiasts!"
-                        </div>
-                        <div class="testimonial-author">- John Doe</div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-4">
-                    <div class="testimonial-card">
-                        <div class="testimonial-text">
-                            "The turfs available on MatchSpot are of top quality. It's my
-                            go-to platform whenever I need to book a turf for a game."
-                        </div>
-                        <div class="testimonial-author">- Jane Smith</div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-4">
-                    <div class="testimonial-card">
-                        <div class="testimonial-text">
-                            "I've been using MatchSpot for all my turf bookings, and I've
-                            never been disappointed. Great service!"
-                        </div>
-                        <div class="testimonial-author">- Michael Johnson</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Contact us -->
-    <section id="contact-us" class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="contact-content">
-                    <h2 class="text-success mb-4">Contact Us</h2>
-                    <p>
-                        Have questions or need assistance? Feel free to reach out to us
-                        using the form below. We'd love to hear from you!
-                    </p>
-                    <form>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Your Name:</label>
-                            <input type="text" class="form-control" id="name" name="name" required />
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Your Email:</label>
-                            <input type="email" class="form-control" id="email" name="email" required />
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Your Message:</label>
-                            <textarea class="form-control" id="message" name="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-success">
-                            Send Message
-                        </button>
-                    </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer-section">
-        <div class="container text-center">
-            <p>&copy; 2024 MatchSpot. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- javaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>
