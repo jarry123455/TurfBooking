@@ -7,18 +7,17 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.turf.enities.Category;
 import com.turf.enities.Ground;
 import com.turf.service.CategoryService;
@@ -48,6 +47,15 @@ public class AdminController {
 		model.addAttribute("allcategory", allCategory);
 		model.addAttribute("title", "Add Ground");
 		return "admin/addground";
+	}
+	
+	@GetMapping("/editGround/{id}")
+	public String editGround(@PathVariable int id,Model model) {
+		
+		model.addAttribute("ground",groundService.getGroundById(id));
+		List<Category> allCategory =categoryService.getAllCategory();
+		model.addAttribute("allCategory", allCategory);
+		return "admin/editGround";
 	}
 
 	@PostMapping("/saveGround")
@@ -85,12 +93,40 @@ public class AdminController {
 		return "redirect:/admin/addground";
 
 	}
+	
+	@PostMapping("/updateGround")
+	public String updateGround(@ModelAttribute Ground ground,@RequestParam("file") MultipartFile file
+	,HttpSession session) {
+		
+		Ground updateGround = groundService.updateGround(ground, file);
+		
+		if (!ObjectUtils.isArray(updateGround)) {
+			session.setAttribute("succMsg", "Ground Update Successfully");
+		}else {
+			session.setAttribute("errMsg", "Something Went Wrong!");
+		}
+		
+		return "redirect:/admin/editGround/" +ground.getId();
+	}
 
+	@GetMapping("/deleteGround/{id}")
+	public String deleteGround(@PathVariable int id,HttpSession session) {
+		
+		boolean deleteGround = groundService.deleteGround(id);
+		
+		if (deleteGround) {
+			session.setAttribute("succMsg", "Ground Deleted Successfully");
+		}else {
+			session.setAttribute("succMsg", "Something Went Wrong!");
+		}
+		return "redirect:/admin/viewground";
+		
+	}
 	@GetMapping("/viewground")
 	public String viewground(Model model) {
 
 		model.addAttribute("grounds", groundService.getAllGround());
-		model.addAttribute("title", "View All Ground");
+		
 		return "admin/viewground";
 	}
 

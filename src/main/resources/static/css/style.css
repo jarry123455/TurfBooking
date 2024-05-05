@@ -8,7 +8,9 @@
     font-size: 1.5rem;
 }*/
 
-
+.description-column {
+            width: 20%; /* Adjust the width percentage as needed */
+        }
 
 .Main {
 	background-color: #2b0470 !important;
