@@ -17,10 +17,17 @@
 					<div class="card shadow p-3  bg-body rounded">
 						<div class="card-header Main text-center">
 							<h3 class="text-white pt-1">Login </h3>
+							<th:block th:if="${param.error}">
+								<p class="text-center text-danger fs-5">
+									[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+							</th:block>
+							<th:block th:if="${param.logout}">
+								<p class="text-center text-danger fs-5">Logout Sucessfully</p>
+							</th:block>
 						</div>
 						<div class="card-body">
 
-							<form>
+							<form action="user" method="post">
 								<div class="mb-3">
 									<label for="exampleInputEmail1" class="form-label">Email address</label>
 									<input type="email" class="form-control" id="exampleInputEmail1"
@@ -30,8 +37,7 @@
 								</div>
 								<div class="mb-3">
 									<label for="exampleInputPassword1" class="form-label">Password</label>
-									<input type="text" class="form-control" id="exampleInputPassword1" 
-									name="password">
+									<input type="text" class="form-control" id="exampleInputPassword1" name="password">
 								</div>
 
 								<div class="container text-center">

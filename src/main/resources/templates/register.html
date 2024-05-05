@@ -24,12 +24,18 @@
 					<div class="card shadow p-0 mb-0 bg-body rounded">
 						<div class="card-header Main text-center">
 							<h3 class="text-white pt-2">Register Here</h3>
-							
-
+							<th:block th:if="${session.succMsg}">
+								<p class="text-success fw-bold">[[${session.succMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
+							<th:block th:if="${session.errMsg}">
+								<p class="text-danger fw-bold">[[${session.errMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
 
 						</div>
 						<div class="card-body">
-							<form >
+							<form action="/registerCustomer" method="post">
 								<div class="row">
 									<div class="col">
 										<label class="form-label">First Name</label>
@@ -50,7 +56,7 @@
 
 									<div class="col">
 										<label class="form-label">Phone Number</label>
-										<input type="text" name="phoneNumber" class="form-control">
+										<input type="number" name="phoneNumber" class="form-control">
 									</div>
 
 								</div>
@@ -72,22 +78,25 @@
 										<input type="text" name="address" class="form-control">
 									</div>
 									<div class="col">
+										<label class="form-label">Enter Your Role</label>
+										<select name="role" class="form-select">
+											<option>--select--</option>
+											<option value="ROLE_USER">User</option>
+											<option value="ROLE_ADMIN">Admin</option>
+										</select>
+									</div>
+
+
+								</div>
+
+								<div class="row">
+									<div class="col">
 										<label class="form-label">Password</label>
 										<input type="text" name="password" class="form-control">
 									</div>
-								
-								</div>
-							
-
-								<div class="row">
-
-									<div class="col">
-										<label class="form-label">Profile Image</label>
-										<input type="file" name="file" class="form-control">
-									</div>
 									<div class="col">
 										<label class="form-label">Pincode</label>
-										<input type="text" name="pinCode" class="form-control">
+										<input type="number" name="pinCode" class="form-control">
 									</div>
 
 								</div>
@@ -98,10 +107,7 @@
 								</div>
 							</form>
 						</div>
-						<div class="card-footer text-center">
-							<a href="" class="text-decoration-none">Forget Password</a><br />
-							Don't have an account? <a th:href="@{/signin}" class="text-decoration-none">Create one</a>
-						</div>
+
 					</div>
 				</div>
 			</div>

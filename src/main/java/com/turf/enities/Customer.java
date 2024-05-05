@@ -23,12 +23,12 @@ public class Customer {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private int phoneNumber;
+	private String phoneNumber;
 	private String state;
 	private String city;
 	private String address;
 	private String password;
-	private String image;
 	private int pincode;
+	private String role;
 	
 }
