@@ -4,47 +4,64 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style>
+	body {
+		background-color: #f8f9fa;
+	}
+
+	.card-sh {
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		border-radius: 10px;
+		padding: 20px;
+	}
+</style>
 </head>
+
 <body>
-	<section>
-		<div class="container card-sh" style="margin-top: 70px;margin-bottom: 100px">
-
-			<div class="col-md-12 p-5">
-				<div class="row">
-					<div class="col-md-6 ">
-						<img alt="" src="/img/bg.jpeg" width="550px"
-							height="400px">
+<section>
+	<div class="container card-sh" style="margin-top: 70px; margin-bottom: 100px;">
+		<div class="row">
+			<div class="col-md-6">
+				<img src="/img/bg.jpeg" alt="Football Ground" class="img-fluid" style="border-radius: 10px;">
+			</div>
+			<div class="col-md-6">
+				<h2>Football Ground</h2>
+				<p class="mb-1"><strong>Description:</strong><br>Our football ground provides a great space for playing football, suitable for all skill levels. Book your slot now and enjoy a fun game with friends!</p>
+				<p class="mb-1">
+					<strong>Ground Details:</strong><br>
+					Status: <span class="badge bg-success">Available</span> <span class="badge bg-warning">out of stock</span><br>
+					Category: Football
+				</p>
+				<p class="fs-5 fw-bold mb-1 text-success">Price: <i class="fas fa-rupee-sign text-success"></i> 500</p>
+				<form id="bookingForm" action="/payment">
+					<div class="mb-3">
+						<label for="date" class="form-label fw-bold">Select Date and Time:</label>
+						<input type="date" id="date" name="date" class="form-control" required>
+						<label for="timeSlot" class="form-label fw-bold mt-2">Select Time Slot:</label>
+						<select id="timeSlot" name="timeSlot" required>
+							<option value="">Select Time</option>
+							<!-- Generate time options -->
+							<option value="06:00">6:00 AM</option>
+							<option value="07:00">7:00 AM</option>
+							<option value="08:00">8:00 AM</option>
+							<option value="09:00">9:00 AM</option>
+							<option value="10:00">10:00 AM</option>
+							<option value="11:00">11:00 AM</option>
+							<option value="12:00">12:00 PM</option>
+							<option value="13:00">1:00 PM</option>
+							<option value="14:00">2:00 PM</option>
+							<option value="15:00">3:00 PM</option>
+							<option value="16:00">4:00 PM</option>
+							<option value="17:00">5:00 PM</option>
+							<option value="06:00">6:00 PM</option>
+						</select>
 					</div>
-
-					<div class="col-md-6">
-
-						<p class="fs-3 ">Cricket </p>
-						<p>
-							<span class="fw-bold">Description : </span><br>
-							Box Type Cricket Play Here
-						</p>
-						<p>
-							<span class="fw-bold"> Ground Details: </span> <br>Status :
-							<span class="badge bg-success">Available</span> <span
-								class="badge bg-warning">out of stock</span> <br> Category
-							: Football<br>
-
-						</p>
-						<p class="fs-5 fw-bold">
-							Price :&nbsp; &nbsp; &nbsp; &nbsp;<i class="fas fa-rupee-sign"></i>
-							7000 					
-						</p>
-						<p>
-							<span class="fw-bold"> Time Slot : </span> 10:00
-						</p>
-						
-						<a href="/payment" class="btn btn-danger col-md-12">Book Now</a>
-					</div>
-				</div>
+					<button type="submit" class="btn btn-success col-md-12" id="bookNowBtn">Book Now</button>
+				</form>
 			</div>
 		</div>
-
-
-	</section>
+	</div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
