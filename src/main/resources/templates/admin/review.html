@@ -23,18 +23,18 @@
 										<th scope="col">Sr No.</th>
 										<th scope="col">Name</th>
 										<th scope="col">Email Id</th>
-										<th scope="col">Description</th>
+										<th scope="col" class="text-center" style="width: 60%;">Query</th>
 										
 									</tr>
 								</thead>
 								<tbody>
 
-									<tr>
+									<tr th:each="con,c:${contact}">
+										<td>[[${c.count}]]</td>
+										<td>[[${con.name}]]</td>
+										<td>[[${con.email}]]</td>
+										<td>[[${con.message}]]</td>
 										
-										<td>1</td>
-										<td>Otto</td>
-										<td>@mdo</td>
-										<td>Mark</td>
 									
 									</tr>
 

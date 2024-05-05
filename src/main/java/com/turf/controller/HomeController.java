@@ -1,11 +1,23 @@
 package com.turf.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.turf.enities.ContactUs;
+import com.turf.service.ContactService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
+	
+	@Autowired
+	private ContactService contactService;
 
 	@GetMapping("/")
 	public String index(Model model) {
@@ -33,6 +45,20 @@ public class HomeController {
 
 		model.addAttribute("title", "Any Query Conatct Us");
 		return "contact";
+	}
+	
+	@PostMapping("/saveContact")
+	public String saveContact(@ModelAttribute ContactUs contactUs ,HttpSession session) {
+		
+		ContactUs saveContact = contactService.saveContact(contactUs);
+		
+		if (!ObjectUtils.isEmpty(saveContact)) {
+			session.setAttribute("succMsg", "Query Saved Successfully");
+		}else {
+			session.setAttribute("succMsg", "Something Went Wrong!!!!!!");
+		}
+		
+		return "redirect:/contact";
 	}
 
 	@GetMapping("/register")

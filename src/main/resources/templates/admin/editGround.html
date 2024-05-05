@@ -82,6 +82,7 @@
 										</div>
 									</div>
 									<div class="col">
+										<label for="exampleInputGround" class="form-label">Select Category</label>
 										<select name="category" class="form-control">
 											<option>[[${ground.category}]]</option>
 											<option th:each="c:${allCategory}">[[${c.name}]]</option>

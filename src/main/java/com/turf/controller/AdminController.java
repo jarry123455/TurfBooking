@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.turf.enities.Category;
 import com.turf.enities.Ground;
 import com.turf.service.CategoryService;
+import com.turf.service.ContactService;
 import com.turf.service.GroundService;
 import jakarta.servlet.http.HttpSession;
 
@@ -30,6 +31,9 @@ public class AdminController {
 
 	@Autowired
 	private GroundService groundService;
+	
+	@Autowired
+	private ContactService contactService;
 
 	@Autowired
 	private CategoryService categoryService;
@@ -142,8 +146,10 @@ public class AdminController {
 	}
 
 	@GetMapping("/review")
-	public String review() {
+	public String review(Model model) {
 
+		model.addAttribute("contact",contactService.getAllContactUs());
+		
 		return "admin/review";
 	}
 
@@ -191,10 +197,53 @@ public class AdminController {
 		return "redirect:/admin/addandviewcategory";
 	}
 	
-	@GetMapping("/editCategory")
-	public String editCategory() {
+	@GetMapping("/editCategory/{id}")
+	public String editCategory(@PathVariable int id,Model model) {
 		
+		model.addAttribute("category",categoryService.getCategoryById(id));
 		return "/admin/editCategory";
+	}
+	
+	@PostMapping("/updateCategory")
+	public String updateCategory(@ModelAttribute Category category, @RequestParam("file") MultipartFile file,
+			HttpSession session) throws IOException {
+
+		Category oldCategory = categoryService.getCategoryById(category.getId());
+
+		String imageName = file.isEmpty() ? oldCategory.getImageName() : file.getOriginalFilename();
+
+		if (!ObjectUtils.isEmpty(category)) {
+
+			oldCategory.setName(category.getName());
+			oldCategory.setIsActive(category.getIsActive());
+			oldCategory.setImageName(imageName);
+		}
+
+		Category updateCategory = categoryService.saveCategory(oldCategory);
+
+		if (!ObjectUtils.isEmpty(updateCategory)) {
+
+			if (!file.isEmpty()) {
+
+				String uploadDir = "static/img/category_img";
+
+				// Create directory if it does not exist
+				File directory = new File(uploadDir);
+				if (!directory.exists()) {
+					directory.mkdirs();
+				}
+
+				Path path = Paths.get(uploadDir + File.separator + file.getOriginalFilename());
+				System.out.println(path);
+				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+			}
+
+			session.setAttribute("succMsg", "Category Updated Successfully");
+		} else {
+			session.setAttribute("errMsg", "Something went wrong");
+		}
+
+		return "redirect:/admin/editCategory/" + category.getId();
 	}
 
 	
