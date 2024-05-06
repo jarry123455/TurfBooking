@@ -12,27 +12,27 @@
 			<div class="col-md-12 p-5">
 				<div class="row">
 					<div class="col-md-6 ">
-						<img alt="" src="/img/bg.jpeg" width="550px"
+						<img alt="" th:src="@{'/img/ground_img/'+${g.image}}" width="550px"
 							height="400px">
 					</div>
 
 					<div class="col-md-6">
 
-						<p class="fs-3 ">Cricket </p>
+						<p class="fs-3 ">[[${g.name}]]</p>
 						<p>
 							<span class="fw-bold">Description : </span><br>
-							Box Type Cricket Play Here
+							[[${g.description}]]
 						</p>
 						<p>
 							<span class="fw-bold"> Ground Details: </span> <br>Status :
 							<span class="badge bg-success">Available</span> <span
-								class="badge bg-warning">out of stock</span> <br> Category
-							: Football<br>
+								class="badge bg-warning">out of stock</span> <br>
+								<span class="fw-bold"> Category: </span> [[${g.category}]]<br>
 
 						</p>
 						<p class="fs-5 fw-bold">
 							Price :&nbsp; &nbsp; &nbsp; &nbsp;<i class="fas fa-rupee-sign"></i>
-							7000 					
+							[[${g.price}]]	/-				
 						</p>
 						<p>
 							<span class="fw-bold"> Time Slot : </span> 10:00

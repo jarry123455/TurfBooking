@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -100,8 +101,10 @@ public class HomeController {
 		return "redirect:/contact";
 	}
 
-	@GetMapping("/ground")
-	public String viewground(Model model) {
+	@GetMapping("/ground/{id}")
+	public String viewground(@PathVariable int id,Model model) {
+		Ground groundById = groundService.getGroundById(id);
+		model.addAttribute("g", groundById);
 		model.addAttribute("title", "Single Ground");
 		return "viewground";
 	}
