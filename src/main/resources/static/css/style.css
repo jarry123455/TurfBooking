@@ -18,6 +18,7 @@
 .Main {
 	background-color: #2b0470 !important;
 	padding: 19px 16px;
+	
 }
 
 .Main2 {
@@ -247,6 +248,7 @@ main p {
 
 .turf-card-button:hover {
 	background-color: #218838;
+	color: ghostwhite;
 }
 
 @media (max-width: 992px) {

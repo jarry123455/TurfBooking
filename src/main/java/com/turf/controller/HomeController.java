@@ -1,5 +1,7 @@
 package com.turf.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,11 +9,16 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.turf.enities.Category;
 import com.turf.enities.ContactUs;
 import com.turf.enities.Customer;
+import com.turf.enities.Ground;
+import com.turf.service.CategoryService;
 import com.turf.service.ContactService;
 import com.turf.service.CustomerService;
+import com.turf.service.GroundService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -24,13 +31,33 @@ public class HomeController {
 	@Autowired
 	private CustomerService customerService;
 
+	@Autowired
+	private GroundService groundService;
+
+	@Autowired
+	private CategoryService categoryService;
+	
+	
+	@GetMapping("/grounds")
+	public String grounds(Model model, @RequestParam(value = "category", defaultValue = "") String category) {
+
+		List<Category> allActiveCategory = categoryService.getAllActiveCategory();
+		List<Ground> allActiveGrounds = groundService.getAllActiveGrounds(category);
+		model.addAttribute("categories", allActiveCategory);
+		model.addAttribute("grounds", allActiveGrounds);
+		model.addAttribute("paramValue", category);
+		model.addAttribute("title", "View All Ground");
+		return "grounds";
+	}
+
 	@GetMapping("/")
 	public String index(Model model) {
 
+		model.addAttribute("categories",categoryService.getAllActiveCategory());
 		model.addAttribute("title", "Home Page");
 		return "index";
 	}
-	
+
 	@GetMapping("/register")
 	public String register(Model model) {
 		model.addAttribute("title", "Register Here");
@@ -43,12 +70,7 @@ public class HomeController {
 		return "login";
 	}
 
-	@GetMapping("/grounds")
-	public String grounds(Model model) {
 
-		model.addAttribute("title", "View All Ground");
-		return "grounds";
-	}
 
 	@GetMapping("/about")
 	public String aboutUs(Model model) {
@@ -77,8 +99,6 @@ public class HomeController {
 
 		return "redirect:/contact";
 	}
-
-	
 
 	@GetMapping("/ground")
 	public String viewground(Model model) {

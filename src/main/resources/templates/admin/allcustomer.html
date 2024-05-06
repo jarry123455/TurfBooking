@@ -25,18 +25,20 @@
 										<th scope="col">Email Id</th>
 										<th scope="col">Phone Number</th>
 										<th scope="col">Address</th>
+										<th scope="col">Role</th>
 										
 									</tr>
 								</thead>
 								<tbody>
 
-									<tr>
+									<tr th:each="cus, c:${customers}">
 										
-										<td>Mark</td>
-										<td>Otto</td>
-										<td>@mdo</td>
-										<td>Mark</td>
-										<td>Mark</td>
+										<td>[[${cus.firstName}]]</td>
+										<td>[[${cus.lastName}]]</td>
+										<td>[[${cus.email}]]</td>
+										<td>[[${cus.phoneNumber}]]</td>
+										<td>[[${cus.address}]]</td>
+										<td>[[${cus.role}]]</td>
 									
 									</tr>
 

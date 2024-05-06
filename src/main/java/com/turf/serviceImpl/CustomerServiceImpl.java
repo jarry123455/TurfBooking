@@ -3,6 +3,8 @@ package com.turf.serviceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -38,10 +40,28 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public List<Customer> getAllCustomers() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public List<Customer> getAllCustomers() {
+        // Get the currently logged-in user
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        // Check if the principal is an instance of UserDetails and retrieve the username
+        String username = null;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        // Check if the logged-in user is an admin
+        if (username != null && username.equals("admin")) {
+            // If the user is an admin, fetch all customers
+            return customerRepository.findAll();
+        } else {
+            // If the user is not an admin, fetch only customers with ROLE_USER
+            return customerRepository.findByRole("ROLE_USER");
+        }
+    }
+
 
 	@Override
 	public boolean deleteCustomer(int id) {

@@ -22,6 +22,7 @@ import com.turf.enities.Category;
 import com.turf.enities.Ground;
 import com.turf.service.CategoryService;
 import com.turf.service.ContactService;
+import com.turf.service.CustomerService;
 import com.turf.service.GroundService;
 import jakarta.servlet.http.HttpSession;
 
@@ -37,6 +38,9 @@ public class AdminController {
 
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private CustomerService customerService;
 
 	@GetMapping("/")
 	public String admin() {
@@ -140,8 +144,9 @@ public class AdminController {
 	}
 
 	@GetMapping("/allcustomer")
-	public String allcustomer() {
+	public String allcustomer(Model model) {
 
+		model.addAttribute("customers", customerService.getAllCustomers());
 		return "admin/allcustomer";
 	}
 

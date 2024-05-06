@@ -98,4 +98,17 @@ public class GroundServiceImpl implements GroundService {
 		return false;
 	}
 
+	@Override
+	public List<Ground> getAllActiveGrounds(String category) {
+		
+		List<Ground> grounds = null;
+		if (ObjectUtils.isEmpty(category)) {
+			grounds = groundRepository.findByIsActiveTrue();
+		}else {
+			grounds = groundRepository.findByCategory(category);
+		}
+
+		return grounds;
+	}
+
 }

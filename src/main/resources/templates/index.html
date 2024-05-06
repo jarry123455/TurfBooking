@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
 
 <head>
@@ -52,57 +52,89 @@
 				</button>
 			</div>
 		</main>
+
+		<div class="container">
+
+			<div class="row">
+				
+				<h2 id="f-grounds" class="mb-4 mt-4 text-center text-success">
+					Featured Grounds
+				</h2>
+				<div class="col-lg-4 col-md-6 pb-4" th:each="cat,c:${categories}">
+					<div class="turf-card">
+						<div class="card pb-4 mb-4">
+							<div class="turf-card-body">
+								<img th:src="@{'/img/category_img/'+${cat.imageName}}" width="120px" height="100px" />
+								<h3 class="text-center mt-2">[[${cat.name}]]</h3>
+								<p class="turf-card-text">
+									Perfect your cricket skills on our well-maintained turfs. Book
+									now and enjoy a great game!
+								</p>
+								
+									<!--<button class="turf-card-button">Book Now</button>-->
+									<a href="/grounds" class="turf-card-button text-center" style="text-decoration: none;">Book Now
+									</a>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
 	</section>
-	<section class="turf-section">
-        <h2 id="f-grounds" class="text-center mb-4 text-success">
-            Featured Grounds
-        </h2>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="turf-card">
-                        <img src="img/cricket-turf.jpg" alt="Cricket Turf" />
-                        <div class="turf-card-body">
-                            <h3 class="turf-card-title">Cricket Turf</h3>
-                            <p class="turf-card-text">
-                                Perfect your cricket skills on our well-maintained turfs. Book
-                                now and enjoy a great game!
-                            </p>
-                            <!--<button class="turf-card-button">Book Now</button>-->
-                            <a href="/grounds" class="turf-card-button" style="text-decoration: none;">Book Now
+	<!--<section class="turf-section">
+		<h2 id="f-grounds" class="text-center mb-4 text-success">
+			Featured Grounds
+		</h2>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-6">
+					<div class="turf-card">
+						<img src="img/cricket-turf.jpg" alt="Cricket Turf" />
+						<div class="turf-card-body">
+							<h3 class="turf-card-title">Cricket Turf</h3>
+							<p class="turf-card-text">
+								Perfect your cricket skills on our well-maintained turfs. Book
+								now and enjoy a great game!
+							</p>
+							<button class="turf-card-button">Book Now</button>
+							<a href="/grounds" class="turf-card-button" style="text-decoration: none;">Book Now
 							</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="turf-card">
-                        <img src="img/football-turf.jpg" alt="Football Turf" />
-                        <div class="turf-card-body">
-                            <h3 class="turf-card-title">Football Turf</h3>
-                            <p class="turf-card-text">
-                                Experience the thrill of football on our premium turfs. Book
-                                now and score some goals!
-                            </p>
-                            <button class="turf-card-button">Book Now</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="turf-card">
-                        <img src="img/basketball-turf.jpg" alt="Basketball Turf" />
-                        <div class="turf-card-body">
-                            <h3 class="turf-card-title">Basketball Turf</h3>
-                            <p class="turf-card-text">
-                                Dribble and shoot hoops on our basketball turfs. Book now and
-                                enjoy the game!
-                            </p>
-                            <button class="turf-card-button">Book Now</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="turf-card">
+						<img src="img/football-turf.jpg" alt="Football Turf" />
+						<div class="turf-card-body">
+							<h3 class="turf-card-title">Football Turf</h3>
+							<p class="turf-card-text">
+								Experience the thrill of football on our premium turfs. Book
+								now and score some goals!
+							</p>
+							<button class="turf-card-button">Book Now</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="turf-card">
+						<img src="img/basketball-turf.jpg" alt="Basketball Turf" />
+						<div class="turf-card-body">
+							<h3 class="turf-card-title">Basketball Turf</h3>
+							<p class="turf-card-text">
+								Dribble and shoot hoops on our basketball turfs. Book now and
+								enjoy the game!
+							</p>
+							<button class="turf-card-button">Book Now</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>-->
 
 </body>
 

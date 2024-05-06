@@ -7,18 +7,26 @@
 </head>
 
 <body>
-	<section style="height: 545px;">
+	<!--<section style="height: 545px;">-->
+	<section>
 		<div class="container-fluid p-5 mt-2">
 			<div class="row">
 				<div class="col-md-4">
 					<div class="card">
 						<div class="card-header text-center fs-4 custom-bg text-white">
 							<p class="fs-4 mt-2">Add Ground Category</p>
+							<th:block th:if="${session.succMsg}">
+								<p class="text-success fw-bold">[[${session.succMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
+							<th:block th:if="${session.errMsg}">
+								<p class="text-danger fw-bold">[[${session.errMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
 
-							
 						</div>
 						<div class="card-body">
-							<form >
+							<form action="/admin/saveCategory" method="post" enctype="multipart/form-data">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="name"
 										placeholder="Enter Ground Category" required />
@@ -76,14 +84,15 @@
 										</td>
 										<td>[[${cat.name}]]</td>
 										<td>[[${cat.isActive}]]</td>
-										
-									
+
+
 										<td>
-											<a th:href="@{'/admin/editCategory/'+ ${cat.id}}"  class="btn btn-primary btn-sm"><i
+											<a th:href="@{'/admin/editCategory/'+ ${cat.id}}"
+												class="btn btn-primary btn-sm"><i
 													class="fa-solid fa-pen-to-square "></i>Edit</a>
 											<a class="btn btn-danger btn-sm"><i class="fa-solid fa-trash "></i>
 												Delete</a>
-											
+
 										</td>
 									</tr>
 								</tbody>

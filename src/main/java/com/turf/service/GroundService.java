@@ -20,6 +20,8 @@ public interface GroundService {
 	
 	public boolean deleteGround(int id);
 	
+	public List<Ground> getAllActiveGrounds(String category);
+	
 	
 
 }
