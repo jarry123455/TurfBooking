@@ -1,7 +1,6 @@
 package com.turf.enities;
 
-import java.time.LocalDateTime;
-
+import java.sql.Date;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,14 +16,13 @@ import lombok.Setter;
 @Getter
 @Entity
 public class Booking {
-	
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Id
-	private int id;
-	
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
-    private int payNow;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String slot; // Changed from 'start' to 'startAndEndTime'
+    private Date date;
     private String paymentType;
+    private int payNow;
 
 }

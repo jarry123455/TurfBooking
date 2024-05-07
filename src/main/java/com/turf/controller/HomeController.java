@@ -43,6 +43,7 @@ public class HomeController {
 
 	@GetMapping("/booking")
 	public String payment(Model model) {
+
 		model.addAttribute("title", "Make Payment");
 		return "booking";
 	}
@@ -50,24 +51,22 @@ public class HomeController {
 	@PostMapping("/saveBooking")
 	public String saveBooking(@ModelAttribute Booking booking, HttpSession session) {
 
-		boolean existsByStartTimeAndEndTime = bookingService.existsByStartTimeAndEndTime(booking.getStartTime(),
-				booking.getEndTime());
+		boolean existsBySlot = bookingService.existsBySlotAndDate(booking.getSlot(),booking.getDate());
 
-		if (existsByStartTimeAndEndTime) {
-
-			session.setAttribute("errMsg", "Slot Booked Already!!!!");
+		if (existsBySlot) {
+			session.setAttribute("errMsg", "Slot  Booked Already !!!!");
 		} else {
 
 			Booking saveBooking = bookingService.saveBooking(booking);
 
 			if (!ObjectUtils.isEmpty(saveBooking)) {
-				session.setAttribute("succMsg", "Booking Saved Successfully");
+				session.setAttribute("succMsg", "Booking  Saved Successfully");
 			} else {
-				session.setAttribute("succMsg", "Someting Went Wrong");
+				session.setAttribute("errMsg", "Someting Went Wrong");
 			}
 		}
-		return "redirect:/booking";
 
+		return "redirect:/booking";
 	}
 
 	@GetMapping("/grounds")
@@ -80,6 +79,16 @@ public class HomeController {
 		model.addAttribute("paramValue", category);
 		model.addAttribute("title", "View All Ground");
 		return "grounds";
+	}
+
+	@GetMapping("/ground/{id}")
+	public String viewground(@PathVariable int id, Model model) {
+		boolean isLoggedIn = true; // or false based on your actual logic
+		model.addAttribute("isLoggedIn", isLoggedIn);
+		Ground groundById = groundService.getGroundById(id);
+		model.addAttribute("g", groundById);
+		model.addAttribute("title", "Single Ground");
+		return "viewground";
 	}
 
 	@GetMapping("/")
@@ -128,16 +137,6 @@ public class HomeController {
 		}
 
 		return "redirect:/contact";
-	}
-
-	@GetMapping("/ground/{id}")
-	public String viewground(@PathVariable int id, Model model) {
-		boolean isLoggedIn = true; // or false based on your actual logic
-		model.addAttribute("isLoggedIn", isLoggedIn);
-		Ground groundById = groundService.getGroundById(id);
-		model.addAttribute("g", groundById);
-		model.addAttribute("title", "Single Ground");
-		return "viewground";
 	}
 
 	@PostMapping("/registerCustomer")
