@@ -13,7 +13,7 @@
 				<div class="row">
 					<div class="col-md-6 ">
 						<div class="card mt-4">
-							<div class="card-header text-center fs-4 custom-bg text-white">
+							<div class="card-header text-center fs-4 Main text-white">
 								<p class="fs-4 mt-2">Make Payment</p>
 								<th:block th:if="${session.succMsg}">
 									<p class="text-success fw-bold">[[${session.succMsg}]]</p>
@@ -67,7 +67,7 @@
 									</div>
 
 									<div class="text-center">
-										<button class="btn btn-primary">Pay Now</button>
+										<button class="btn btn-success">Pay Now</button>
 									</div>
 								</form>
 
@@ -76,11 +76,20 @@
 						</div>
 					</div>
 
-					<div class="col-md-6">
+					<div class="col-md-5">
 						<div class="card mt-5 pt-2">
-							<img alt="" src="/img/payment.jpeg" width="550px" height="400px">
+							<h4 class="text-center">We accept payments using the following :</h4>
+							<div class="row justify-content-center align-items-center">
+								<div class="col-md-6 col-sm-12">
+									<img alt="" src="/img/google-pay.jpg" class="img-fluid" style="max-width: 80%; height: 162px;">
+								</div>
+								<div class="col-md-6 col-sm-12">
+									<img alt="" src="/img/paytm.webp" class="img-fluid" style="max-width: 80%; height: 162px;">
+								</div>
+							</div>
 						</div>
 					</div>
+					
 				</div>
 			</div>
 		</div>
