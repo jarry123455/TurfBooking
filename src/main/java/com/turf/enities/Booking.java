@@ -1,40 +1,30 @@
 package com.turf.enities;
 
-
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-public class Ground {
-
-	@Id
+public class Booking {
+	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
 	private int id;
-
-	private String name;
-	private String description;
-	private double width;
-	private double length;
-	private double height;
-	private int price;
-	private String category;
-	private Boolean isActive;
-	private String image;
 	
-	@ManyToOne
-	private Customer customer;
-	
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private int payNow;
+    private String paymentType;
 
 }

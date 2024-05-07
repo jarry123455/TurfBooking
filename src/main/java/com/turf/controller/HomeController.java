@@ -1,7 +1,6 @@
 package com.turf.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,15 +11,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.turf.enities.Booking;
 import com.turf.enities.Category;
 import com.turf.enities.ContactUs;
 import com.turf.enities.Customer;
 import com.turf.enities.Ground;
+import com.turf.service.BookingService;
 import com.turf.service.CategoryService;
 import com.turf.service.ContactService;
 import com.turf.service.CustomerService;
 import com.turf.service.GroundService;
-
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -37,8 +37,39 @@ public class HomeController {
 
 	@Autowired
 	private CategoryService categoryService;
-	
-	
+
+	@Autowired
+	private BookingService bookingService;
+
+	@GetMapping("/booking")
+	public String payment(Model model) {
+		model.addAttribute("title", "Make Payment");
+		return "booking";
+	}
+
+	@PostMapping("/saveBooking")
+	public String saveBooking(@ModelAttribute Booking booking, HttpSession session) {
+
+		boolean existsByStartTimeAndEndTime = bookingService.existsByStartTimeAndEndTime(booking.getStartTime(),
+				booking.getEndTime());
+
+		if (existsByStartTimeAndEndTime) {
+
+			session.setAttribute("errMsg", "Slot Booked Already!!!!");
+		} else {
+
+			Booking saveBooking = bookingService.saveBooking(booking);
+
+			if (!ObjectUtils.isEmpty(saveBooking)) {
+				session.setAttribute("succMsg", "Booking Saved Successfully");
+			} else {
+				session.setAttribute("succMsg", "Someting Went Wrong");
+			}
+		}
+		return "redirect:/booking";
+
+	}
+
 	@GetMapping("/grounds")
 	public String grounds(Model model, @RequestParam(value = "category", defaultValue = "") String category) {
 
@@ -54,7 +85,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String index(Model model) {
 
-		model.addAttribute("categories",categoryService.getAllActiveCategory());
+		model.addAttribute("categories", categoryService.getAllActiveCategory());
 		model.addAttribute("title", "Home Page");
 		return "index";
 	}
@@ -70,8 +101,6 @@ public class HomeController {
 		model.addAttribute("title", "Login Here");
 		return "login";
 	}
-
-
 
 	@GetMapping("/about")
 	public String aboutUs(Model model) {
@@ -102,17 +131,13 @@ public class HomeController {
 	}
 
 	@GetMapping("/ground/{id}")
-	public String viewground(@PathVariable int id,Model model) {
+	public String viewground(@PathVariable int id, Model model) {
+		boolean isLoggedIn = true; // or false based on your actual logic
+		model.addAttribute("isLoggedIn", isLoggedIn);
 		Ground groundById = groundService.getGroundById(id);
 		model.addAttribute("g", groundById);
 		model.addAttribute("title", "Single Ground");
 		return "viewground";
-	}
-
-	@GetMapping("/payment")
-	public String payment(Model model) {
-		model.addAttribute("title", "Make Payment");
-		return "payment";
 	}
 
 	@PostMapping("/registerCustomer")

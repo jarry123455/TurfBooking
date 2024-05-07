@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section>
+		<div class="container-fluid">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-6 ">
+						<div class="card mt-4">
+							<div class="card-header text-center fs-4 custom-bg text-white">
+								<p class="fs-4 mt-2">Make Payment</p>
+								<th:block th:if="${session.succMsg}">
+									<p class="text-success fw-bold">[[${session.succMsg}]]</p>
+									<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+								</th:block>
+								<th:block th:if="${session.errMsg}">
+									<p class="text-danger fw-bold">[[${session.errMsg}]]</p>
+									<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+								</th:block>
+
+							</div>
+							<div class="card-body">
+								<form action="/saveBooking" method="post">
+									<div class="row mb-3">
+										<label for="inputEmail3" class="col-sm-2 col-form-label">Start Time</label>
+										<div class="col-sm-8">
+											<input type="datetime-local" name="startTime" class="form-control" required>
+										</div>
+									</div>
+									<div class="row mb-3">
+										<label for="inputEmail3" class="col-sm-2 col-form-label">End Time</label>
+										<div class="col-sm-8">
+											<input type="datetime-local" name="endTime" class="form-control" required>
+										</div>
+									</div>
+									<div class="row mb-3">
+										<label for="inputEmail3" class="col-sm-2 col-form-label">Select Payment Mode</label>
+										<div class="col-sm-8">
+											<select name="paymentType" class="form-select">
+												<option value="G-PAY">G-Pay</option>
+												<option value="Paytm">Paytm</option>
+											</select>
+										</div>
+									</div>
+									<div class="row mb-3">
+										<label for="inputEmail3" class="col-sm-2 col-form-label">Pay Now</label>
+										<div class="col-sm-8">
+											<input type="number" name="payNow" class="form-control" required>
+										</div>
+									</div>
+
+									<div class="text-center">
+										<button class="btn btn-primary">Pay Now</button>
+									</div>
+								</form>
+
+							</div>
+
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="card mt-5 pt-2">
+							<img alt="" src="/img/payment.jpeg" width="550px" height="400px">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

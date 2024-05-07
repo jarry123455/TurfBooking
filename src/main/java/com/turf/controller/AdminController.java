@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.security.Principal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import com.turf.enities.Category;
+import com.turf.enities.Customer;
 import com.turf.enities.Ground;
+import com.turf.repository.CustomerRepository;
 import com.turf.service.CategoryService;
 import com.turf.service.ContactService;
 import com.turf.service.CustomerService;
@@ -41,10 +44,19 @@ public class AdminController {
 	
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+	private CustomerRepository customerRepository;
 
 	@GetMapping("/")
-	public String admin() {
+	public String admin(Model model,Principal principal) {
 
+		
+		String userName = principal.getName();
+		Customer user = customerRepository.findByEmail(userName);
+		model.addAttribute("user", user);
+		System.out.println(user);
+	
 		return "admin/index";
 	}
 
