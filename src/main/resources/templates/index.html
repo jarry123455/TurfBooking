@@ -15,27 +15,27 @@
 						<div class="carousel-caption">
 							<h1>Unleash Your Sporting Passion</h1>
 							<p>
-								Discover the thrill of booking top-notch turfs at your
+								Discover the thrill of booking top-notch grounds at your
 								fingertips. Elevate your game with MatchSpot!
 							</p>
-							<a href="#featured-turfs" class="btn btn-success btn-lg">Explore Turfs</a>
+							<a href="/grounds" class="btn btn-success btn-lg">Explore grounds</a>
 						</div>
 					</div>
 					<div class="carousel-item" style="background-image: url('img/bg2.jpg')">
 						<div class="carousel-caption">
 							<h1>Find Your Perfect Playground</h1>
 							<p>
-								From soccer to cricket, we have the best turfs for every sport.
+								From soccer to cricket, we have the best grounds for every sport.
 								Book now and start playing!
 							</p>
-							<a href="#featured-turfs" class="btn btn-success btn-lg">Book Now</a>
+							<a href="/grounds" class="btn btn-success btn-lg">Book Now</a>
 						</div>
 					</div>
 					<div class="carousel-item" style="background-image: url('img/bg3.jpg')">
 						<div class="carousel-caption">
 							<h1>Your Sports Destination Awaits</h1>
 							<p>
-								Join us and experience the joy of sports. Book turfs, meet
+								Join us and experience the joy of sports. Book grounds, meet
 								players, and play your heart out!
 							</p>
 							<a href="/register" class="btn btn-success btn-lg">Join Now</a>
@@ -53,89 +53,71 @@
 			</div>
 		</main>
 
-		<div class="container">
+		<div class="container-xxl about-section">
+            <div class="row m-4">
+                <h2 class="section-heading mb-5 text-success text-center">
+                    About Us
+                </h2>
 
-			<div class="row">
-				
-				<h2 id="f-grounds" class="mb-4 mt-4 text-center text-success">
-					Featured Grounds
-				</h2>
-				<div class="col-lg-4 col-md-6 pb-4" th:each="cat,c:${categories}">
-					<div class="turf-card">
-						<div class="card pb-4 mb-4">
-							<div class="turf-card-body">
-								<img th:src="@{'/img/category_img/'+${cat.imageName}}" width="120px" height="100px" />
-								<h3 class="text-center mt-2">[[${cat.name}]]</h3>
-								<p class="turf-card-text">
-									Perfect your cricket skills on our well-maintained turfs. Book
-									now and enjoy a great game!
-								</p>
-								
-									<!--<button class="turf-card-button">Book Now</button>-->
-									<a href="/grounds" class="turf-card-button text-center" style="text-decoration: none;">Book Now
-									</a>
-								
+                <div class="col-lg-6">
+                    <img src="img/about-image.jpg" class="img-fluid" alt="About Us Image" />
+                </div>
+                <div class="col-lg-6">
+                    <p class="section-text mt-0">
+                        At MatchSpot, we're passionate about sports and recreation. Our
+                        mission is to provide sports clubs and enthusiasts with a seamless
+                        platform to book turfs and facilities hassle-free. With our
+                        user-friendly app, you can explore and book the best turfs for
+                        your favorite sports.
+                    </p>
+                    <p class="section-text">
+                        Our team is dedicated to ensuring that you have a fantastic
+                        experience every time you use MatchSpot. Whether you're a sports
+                        club looking to manage bookings or an individual searching for the
+                        perfect turf, MatchSpot has you covered.
+                    </p>
+                </div>
+            </div>
+        </div>
+		<div class="container-xxl mt-4 contact-us">
+			<div class="row mt-4 pt-4 ps-4">
+				<div class="col-md-6">
+					<div class="contact-content">
+						<h2 class="text-success mb-4">Contact Us</h2>
+						<th:block th:if="${session.succMsg}">
+									<p class="text-success fw-bold">[[${session.succMsg}]]</p>
+									<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+								</th:block>
+								<th:block th:if="${session.errMsg}">
+									<p class="text-danger fw-bold">[[${session.errMsg}]]</p>
+									<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+								</th:block>
+						<p>
+							Have questions or need assistance? Feel free to reach out to us
+							using the form below. We'd love to hear from you!
+						</p>
+						<form action="/saveContact" method="post">
+							<div class="mb-3">
+								<label for="name" class="form-label">Your Name:</label>
+								<input type="text" class="form-control" id="name" name="name" required />
 							</div>
-						</div>
+							<div class="mb-3">
+								<label for="email" class="form-label">Your Email:</label>
+								<input type="email" class="form-control" id="email" name="email" required />
+							</div>
+							<div class="mb-3">
+								<label for="message" class="form-label">Your Message:</label>
+								<textarea class="form-control" rows="2" cols="20" id="message" name="message" required></textarea>
+							</div>
+							<button type="submit" class="btn btn-success">
+								Send Message
+							</button>
+						</form>
 					</div>
 				</div>
-
 			</div>
 		</div>
-
-
 	</section>
-	<!--<section class="turf-section">
-		<h2 id="f-grounds" class="text-center mb-4 text-success">
-			Featured Grounds
-		</h2>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4 col-md-6">
-					<div class="turf-card">
-						<img src="img/cricket-turf.jpg" alt="Cricket Turf" />
-						<div class="turf-card-body">
-							<h3 class="turf-card-title">Cricket Turf</h3>
-							<p class="turf-card-text">
-								Perfect your cricket skills on our well-maintained turfs. Book
-								now and enjoy a great game!
-							</p>
-							<button class="turf-card-button">Book Now</button>
-							<a href="/grounds" class="turf-card-button" style="text-decoration: none;">Book Now
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="turf-card">
-						<img src="img/football-turf.jpg" alt="Football Turf" />
-						<div class="turf-card-body">
-							<h3 class="turf-card-title">Football Turf</h3>
-							<p class="turf-card-text">
-								Experience the thrill of football on our premium turfs. Book
-								now and score some goals!
-							</p>
-							<button class="turf-card-button">Book Now</button>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="turf-card">
-						<img src="img/basketball-turf.jpg" alt="Basketball Turf" />
-						<div class="turf-card-body">
-							<h3 class="turf-card-title">Basketball Turf</h3>
-							<p class="turf-card-text">
-								Dribble and shoot hoops on our basketball turfs. Book now and
-								enjoy the game!
-							</p>
-							<button class="turf-card-button">Book Now</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>-->
-
 </body>
 
 </html>

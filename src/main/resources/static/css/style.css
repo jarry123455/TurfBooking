@@ -1,13 +1,5 @@
 @charset "ISO-8859-1";
 
-/*#logo {
-    color: #28a745;
-    padding: .4em;
-    margin: 0 3em 0 0;
-    font-weight: 700;
-    font-size: 1.5rem;
-}*/
-
 
 .description-column {
 	width: 20%;
@@ -16,14 +8,12 @@
 
 
 .Main {
-	background-color: #2b0470 !important;
-	padding: 19px 16px;
-	
-	
+	background-color: #198754 !important;
+	padding: 10px 8px;
 }
 
 .Main2 {
-	background-color: #f5e3d4;
+	background-color: #3141ce;
 }
 
 .admin .card:hover {
@@ -49,10 +39,6 @@
 	box-shadow: 0 0 10px rgba(0, 0, 0, .1);
 }
 
-.custom-bg {
-	background: #2b0470;
-}
-
 * {
 	margin: 0;
 	padding: 0;
@@ -76,16 +62,16 @@ nav {
 	background-color: var(--nav-bgc);
 }
 
-/*a.nav-link{
+a.nav-link{
     padding: .5em !important;
     border: 2px solid #04ff8a00;
     color: #000000c1;
 }
 a.nav-link:hover{
     color: rgba(0, 0, 0, 0.925);
-    border-bottom: 2px solid #08d776;
+    border-bottom: 2px solid #198754;
     transition: .3s ease-in-out;
-}*/
+}
 
 .customer-link {
 	border-radius: 4px;
@@ -309,8 +295,14 @@ main p {
 }
 
 /* --- Contact us --- */
-#contact-us {
-	padding: 80px 0;
+.contact-us {
+	padding: 60px 0;
+	background-color: #effaee;
+}
+.contact-content input{
+	background-color: #effaee;
+}
+.contact-content textarea{
 	background-color: #effaee;
 }
 

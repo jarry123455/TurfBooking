@@ -5,24 +5,23 @@
 	<meta charset="ISO-8859-1">
 	<title>Insert title here</title>
 </head>
-
+ 
 <body>
 	<section>
 		<div class="container-fluid mt-1">
 			<div class="row">
-
-				<div class="col-md-2">
+				<div class="col-md-2 list-group-item-success">
 					<p class="fs-3 text-center">
 						Categories
 					</p>
-					<div class="list-group">
+					<div class="list-group ">
 						<a href="/grounds" th:classappend="${paramValue == ''} ? 'active' : ''"
-							class="list-group-item list-group-item-action" aria-current="true">
+							class="list-group-item list-group-item-action list-group-item-success" aria-current="true">
 							All
 						</a>
 						<a th:each="c:${categories}" th:href="@{'/grounds?category='+${c.name}}"
 							th:classappend="${paramValue == c.name} ? 'active' : ''"
-							class="list-group-item list-group-item-action">[[${c.name}]]</a>
+							class="list-group-item list-group-item-action list-group-item-success">[[${c.name}]]</a>
 
 					</div>
 				</div>
