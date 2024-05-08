@@ -35,11 +35,15 @@
 
 						</div>
 						<div class="card-body">
-							<form action="/registerCustomer" method="post">
+							<form novalidate action="/registerCustomer" method="post" >
 								<div class="row">
 									<div class="col">
 										<label class="form-label">First Name</label>
-										<input type="text" name="firstName" class="form-control">
+										<input type="text" name="firstName"
+										 
+											class="form-control ">
+										
+										
 									</div>
 
 									<div class="col">
@@ -56,7 +60,15 @@
 
 									<div class="col">
 										<label class="form-label">Phone Number</label>
-										<input type="number" name="phoneNumber" class="form-control">
+										<input type="number" name="phoneNumber" class="form-control"
+										>
+										<!--
+											th:value="${customer.phoneNumber}"
+											th:classappend="${#fields.hasErrors('phoneNumber')? 'is-invalid' : ''}"
+											<div class="invalid-feedback" th:each="e : ${#fields.errors('phoneNumber')}"
+											th:text="${e}">
+
+										</div>-->
 									</div>
 
 								</div>

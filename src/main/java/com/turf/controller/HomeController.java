@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import com.turf.service.ContactService;
 import com.turf.service.CustomerService;
 import com.turf.service.GroundService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 @Controller
 public class HomeController {
@@ -126,8 +128,14 @@ public class HomeController {
 	}
 
 	@PostMapping("/saveContact")
-	public String saveContact(@ModelAttribute ContactUs contactUs, HttpSession session) {
-
+	public String saveContact(@Valid @ModelAttribute("contactUs") ContactUs contactUs,BindingResult result,Model model,HttpSession session) {
+		
+		if (result.hasErrors()) {
+			System.out.println("Error " + result.toString());
+			model.addAttribute("contactUs", contactUs);
+			return "contact";
+		}
+		
 		ContactUs saveContact = contactService.saveContact(contactUs);
 
 		if (!ObjectUtils.isEmpty(saveContact)) {
@@ -140,8 +148,16 @@ public class HomeController {
 	}
 
 	@PostMapping("/registerCustomer")
-	public String saveCustomer(@ModelAttribute Customer customer, HttpSession session) {
+	public String saveCustomer( @ModelAttribute("customer") Customer customer,BindingResult result,
+			Model model,HttpSession session) {
 
+		/*
+		 * if (result.hasErrors()) { System.out.println("Error" + result.toString());
+		 * model.addAttribute("customer",customer);
+		 * 
+		 * return "register"; }
+		 */
+		
 		boolean existsByEmail = customerService.existsByEmail(customer.getEmail());
 
 		if (existsByEmail) {
