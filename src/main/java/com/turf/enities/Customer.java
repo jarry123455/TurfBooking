@@ -33,14 +33,13 @@ public class Customer {
 	private String lastName;
 	private String email;
 	private String phoneNumber;
-	private String state;
-	private String city;
 	private String address;
 	private String password;
-	private int pincode;
 	private String role;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "customer")
-	private List<Ground> grounds = new ArrayList<>();
+	/*
+	 * @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =
+	 * "customer") private List<Ground> grounds = new ArrayList<>();
+	 */
 
 }

@@ -54,44 +54,69 @@
 		</main>
 
 		<div class="container-xxl about-section">
-            <div class="row m-4">
-                <h2 class="section-heading mb-5 text-success text-center">
-                    About Us
-                </h2>
+			<div class="row m-4">
+				<h2 class="section-heading mb-5 text-success text-center">
+					About Us
+				</h2>
 
-                <div class="col-lg-6">
-                    <img src="img/about-image.jpg" class="img-fluid" alt="About Us Image" />
-                </div>
-                <div class="col-lg-6">
-                    <p class="section-text mt-0">
-                        At MatchSpot, we're passionate about sports and recreation. Our
-                        mission is to provide sports clubs and enthusiasts with a seamless
-                        platform to book turfs and facilities hassle-free. With our
-                        user-friendly app, you can explore and book the best turfs for
-                        your favorite sports.
-                    </p>
-                    <p class="section-text">
-                        Our team is dedicated to ensuring that you have a fantastic
-                        experience every time you use MatchSpot. Whether you're a sports
-                        club looking to manage bookings or an individual searching for the
-                        perfect turf, MatchSpot has you covered.
-                    </p>
-                </div>
-            </div>
-        </div>
+				<div class="col-lg-6">
+					<img src="img/about-image.jpg" class="img-fluid" alt="About Us Image" />
+				</div>
+				<div class="col-lg-6">
+					<p class="section-text mt-0">
+						At MatchSpot, we're passionate about sports and recreation. Our
+						mission is to provide sports clubs and enthusiasts with a seamless
+						platform to book turfs and facilities hassle-free. With our
+						user-friendly app, you can explore and book the best turfs for
+						your favorite sports.
+					</p>
+					<p class="section-text">
+						Our team is dedicated to ensuring that you have a fantastic
+						experience every time you use MatchSpot. Whether you're a sports
+						club looking to manage bookings or an individual searching for the
+						perfect turf, MatchSpot has you covered.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-6" th:each="cat,c:${categories}">
+					<div class="turf-card">
+						<div class="card-body text-center">
+							<div class="turf-card-body">
+								<img th:src="@{'/img/category_img/'+${cat.imageName}}" width="120px" height="100px" />
+								<b class="turf-card-title">[[${cat.name}]]</b>
+								<p class="turf-card-text">
+									Perfect your cricket skills on our well-maintained turfs. Book
+									now and enjoy a great game!
+								</p>
+								<!--<button class="turf-card-button">Book Now</button>-->
+								<a href="/grounds" class="turf-card-button" style="text-decoration: none;">Book Now
+								</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
 		<div class="container-xxl mt-4 contact-us">
 			<div class="row mt-4 pt-4 ps-4">
 				<div class="col-md-6">
 					<div class="contact-content">
 						<h2 class="text-success mb-4">Contact Us</h2>
 						<th:block th:if="${session.succMsg}">
-									<p class="text-success fw-bold">[[${session.succMsg}]]</p>
-									<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-								</th:block>
-								<th:block th:if="${session.errMsg}">
-									<p class="text-danger fw-bold">[[${session.errMsg}]]</p>
-									<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
-								</th:block>
+							<p class="text-success fw-bold">[[${session.succMsg}]]</p>
+							<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+						</th:block>
+						<th:block th:if="${session.errMsg}">
+							<p class="text-danger fw-bold">[[${session.errMsg}]]</p>
+							<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+						</th:block>
 						<p>
 							Have questions or need assistance? Feel free to reach out to us
 							using the form below. We'd love to hear from you!
@@ -107,7 +132,8 @@
 							</div>
 							<div class="mb-3">
 								<label for="message" class="form-label">Your Message:</label>
-								<textarea class="form-control" rows="2" cols="20" id="message" name="message" required></textarea>
+								<textarea class="form-control" rows="2" cols="20" id="message" name="message"
+									required></textarea>
 							</div>
 							<button type="submit" class="btn btn-success">
 								Send Message

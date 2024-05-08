@@ -33,8 +33,9 @@ public class Ground {
 	private Boolean isActive;
 	private String image;
 	
-	@ManyToOne
-	private Customer customer;
+	/*
+	 * @ManyToOne private Customer customer;
+	 */
 	
 
 }

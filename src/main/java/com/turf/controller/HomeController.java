@@ -43,20 +43,31 @@ public class HomeController {
 	@Autowired
 	private BookingService bookingService;
 
-	@GetMapping("/booking")
-	public String payment(Model model) {
+	/*
+	 * @GetMapping("/booking") public String payment(Model model) {
+	 * 
+	 * model.addAttribute("title", "Make Payment"); return "booking"; }
+	 */
 
-		model.addAttribute("title", "Make Payment");
-		return "booking";
+	@GetMapping("/ground/{id}")
+	public String viewground(@PathVariable int id, Model model) {
+		boolean isLoggedIn = true; // or false based on your actual logic
+		model.addAttribute("isLoggedIn", isLoggedIn);
+		Ground groundById = groundService.getGroundById(id);
+		model.addAttribute("g", groundById);
+		model.addAttribute("title", "Single Ground");
+		return "viewground";
 	}
 
 	@PostMapping("/saveBooking")
 	public String saveBooking(@ModelAttribute Booking booking, HttpSession session) {
 
-		boolean existsBySlot = bookingService.existsBySlotAndDate(booking.getSlot(),booking.getDate());
+		
+		boolean existsBySlot = bookingService.existsBySlotAndDate(booking.getSlot(), booking.getDate());
 
 		if (existsBySlot) {
 			session.setAttribute("errMsg", "Slot  Booked Already !!!!");
+			/* return "redirect:/ground/" + booking.getGroundId(); */
 		} else {
 
 			Booking saveBooking = bookingService.saveBooking(booking);
@@ -68,7 +79,7 @@ public class HomeController {
 			}
 		}
 
-		return "redirect:/booking";
+		return "redirect:/";
 	}
 
 	@GetMapping("/grounds")
@@ -81,16 +92,6 @@ public class HomeController {
 		model.addAttribute("paramValue", category);
 		model.addAttribute("title", "View All Ground");
 		return "grounds";
-	}
-
-	@GetMapping("/ground/{id}")
-	public String viewground(@PathVariable int id, Model model) {
-		boolean isLoggedIn = true; // or false based on your actual logic
-		model.addAttribute("isLoggedIn", isLoggedIn);
-		Ground groundById = groundService.getGroundById(id);
-		model.addAttribute("g", groundById);
-		model.addAttribute("title", "Single Ground");
-		return "viewground";
 	}
 
 	@GetMapping("/")
@@ -128,14 +129,15 @@ public class HomeController {
 	}
 
 	@PostMapping("/saveContact")
-	public String saveContact(@Valid @ModelAttribute("contactUs") ContactUs contactUs,BindingResult result,Model model,HttpSession session) {
-		
+	public String saveContact(@Valid @ModelAttribute ContactUs contactUs, BindingResult result, Model model,
+			HttpSession session) {
+
 		if (result.hasErrors()) {
 			System.out.println("Error " + result.toString());
 			model.addAttribute("contactUs", contactUs);
 			return "contact";
 		}
-		
+
 		ContactUs saveContact = contactService.saveContact(contactUs);
 
 		if (!ObjectUtils.isEmpty(saveContact)) {
@@ -148,8 +150,8 @@ public class HomeController {
 	}
 
 	@PostMapping("/registerCustomer")
-	public String saveCustomer( @ModelAttribute("customer") Customer customer,BindingResult result,
-			Model model,HttpSession session) {
+	public String saveCustomer(@ModelAttribute("customer") Customer customer, BindingResult result, Model model,
+			HttpSession session) {
 
 		/*
 		 * if (result.hasErrors()) { System.out.println("Error" + result.toString());
@@ -157,7 +159,7 @@ public class HomeController {
 		 * 
 		 * return "register"; }
 		 */
-		
+
 		boolean existsByEmail = customerService.existsByEmail(customer.getEmail());
 
 		if (existsByEmail) {

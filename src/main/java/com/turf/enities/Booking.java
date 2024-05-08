@@ -24,5 +24,6 @@ public class Booking {
     private Date date;
     private String paymentType;
     private int payNow;
+    private String name;
 
 }

@@ -30,6 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		String password = passwordEncoder.encode(customer.getPassword());
 		customer.setPassword(password);	
+		customer.setRole("ROLE_USER");
 		return customerRepository.save(customer);
 	}
 

@@ -16,7 +16,7 @@
 							<div class="card-header text-center fs-4 Main text-white">
 								<p class="fs-4 mt-2">Make Payment</p>
 								<th:block th:if="${session.succMsg}">
-									<p class="text-success fw-bold">[[${session.succMsg}]]</p>
+									<p class="text-ligth fw-bold">[[${session.succMsg}]]</p>
 									<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
 								</th:block>
 								<th:block th:if="${session.errMsg}">
@@ -32,13 +32,13 @@
 											Select Time</label>
 										<div class="col-sm-8">
 											<select name="slot" class="form-select">
-												<option value="08:00 09:00 PM">08:00 09:00 PM</option>
-												<option value="10:00 11:00 PM">10:00 11:00 PM</option>
-												<option value="12:00 01:00 AM">12:00 01:00 AM</option>
-												<option value="01:00 02:00 AM">01:00 02:00 AM</option>
-												<option value="02:00 03:00 AM">02:00 03:00 AM</option>
-												<option value="04:00 05:00 AM">04:00 05:00 AM</option>
-												<option value="06:00 06:00 AM">06:00 06:00 AM</option>
+												<option value="08:00 PM 09:00 PM">08:00 PM 09:00 PM</option>
+												<option value="10:00 PM 11:00 PM">10:00 PM 11:00 PM</option>
+												<option value="12:00 AM 01:00 AM">12:00 AM 01:00 AM</option>
+												<option value="01:00 AM 02:00 AM">01:00 AM 02:00 AM</option>
+												<option value="02:00 AM 03:00 AM">02:00 AM 03:00 AM</option>
+												<option value="04:00 AM 05:00 AM">04:00 AM 05:00 AM</option>
+												<option value="06:00 AM 06:00 AM">06:00 AM 06:00 AM</option>
 											</select>
 										</div>
 									</div>
