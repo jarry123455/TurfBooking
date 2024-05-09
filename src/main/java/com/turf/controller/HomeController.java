@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.turf.enities.Booking;
 import com.turf.enities.Category;
@@ -60,9 +61,11 @@ public class HomeController {
 	}
 
 	@PostMapping("/saveBooking")
-	public String saveBooking(@ModelAttribute Booking booking, HttpSession session) {
+	public String saveBooking(@ModelAttribute Booking booking, HttpSession session,
+			@RequestParam("groundId") Long groundId, RedirectAttributes redirectAttributes) {
 
-		
+		redirectAttributes.addAttribute("id", groundId);
+
 		boolean existsBySlot = bookingService.existsBySlotAndDate(booking.getSlot(), booking.getDate());
 
 		if (existsBySlot) {
@@ -79,7 +82,7 @@ public class HomeController {
 			}
 		}
 
-		return "redirect:/";
+		return "redirect:/ground/{id}";
 	}
 
 	@GetMapping("/grounds")
@@ -104,12 +107,22 @@ public class HomeController {
 
 	@GetMapping("/register")
 	public String register(Model model) {
+		model.addAttribute("customer", new Customer());
 		model.addAttribute("title", "Register Here");
 		return "register";
 	}
 
 	@GetMapping("/login")
-	public String login(Model model) {
+	public String login(@RequestParam(name = "error", required = false) String error, Model model) {
+		if (error != null) {
+			String errorMessage = "Invalid email or password";
+			if (error.equals("badCredentials")) {
+				errorMessage = "Wrong password";
+			} else if (error.equals("invalidUsername")) {
+				errorMessage = "Wrong email";
+			}
+			model.addAttribute("errorMessage", errorMessage);
+		}
 		model.addAttribute("title", "Login Here");
 		return "login";
 	}
@@ -124,17 +137,20 @@ public class HomeController {
 	@GetMapping("/contact")
 	public String contactUs(Model model) {
 
+		model.addAttribute("contactUs", new ContactUs());
 		model.addAttribute("title", "Any Query Conatct Us");
 		return "contact";
 	}
 
 	@PostMapping("/saveContact")
-	public String saveContact(@Valid @ModelAttribute ContactUs contactUs, BindingResult result, Model model,
-			HttpSession session) {
+	public String saveContact(@Valid @ModelAttribute("contactUs") ContactUs contactUs, BindingResult result,
+			Model model, HttpSession session) {
 
 		if (result.hasErrors()) {
-			System.out.println("Error " + result.toString());
-			model.addAttribute("contactUs", contactUs);
+			/*
+			 * System.out.println("Error " + result.toString());
+			 * model.addAttribute("contactUs", contactUs);
+			 */
 			return "contact";
 		}
 
@@ -150,20 +166,22 @@ public class HomeController {
 	}
 
 	@PostMapping("/registerCustomer")
-	public String saveCustomer(@ModelAttribute("customer") Customer customer, BindingResult result, Model model,
+	public String saveCustomer(@Valid @ModelAttribute("customer") Customer customer, BindingResult result, Model model,
 			HttpSession session) {
 
-		/*
-		 * if (result.hasErrors()) { System.out.println("Error" + result.toString());
-		 * model.addAttribute("customer",customer);
-		 * 
-		 * return "register"; }
-		 */
+		if (result.hasErrors()) {
+			/*
+			 * System.out.println("Error " + result.toString());
+			 * model.addAttribute("contactUs", contactUs);
+			 */
+			return "register";
+		}
 
 		boolean existsByEmail = customerService.existsByEmail(customer.getEmail());
 
 		if (existsByEmail) {
 			session.setAttribute("errMsg", "Customer Already Exists");
+			return "register";
 		} else {
 
 			Customer saveCustomer = customerService.saveCustomer(customer);
@@ -175,7 +193,7 @@ public class HomeController {
 			}
 		}
 
-		return "redirect:/register";
+		return "redirect:/login";
 	}
 
 }
