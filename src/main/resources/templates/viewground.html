@@ -80,6 +80,14 @@
 
 						</div>
 						<form action="/saveBooking" method="post">
+							<input type="hidden" name="groundId" th:value="${g.id}">
+							<div class="row mb-3">
+								<label for="inputEmail3" class="col-sm-2 col-form-label">Ground Name</label>
+								<div class="col-sm-8">
+									<input type="text" name="name" th:value="${g.name}" id="payNowInput"
+										class="form-control" readonly>
+								</div>
+							</div>
 							<div class="row mb-3">
 								<label for="inputEmail3" class="col-sm-2 col-form-label">
 									Select Time</label>

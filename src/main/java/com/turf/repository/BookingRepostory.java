@@ -8,7 +8,7 @@ import com.turf.enities.Booking;
 
 public interface BookingRepostory extends JpaRepository<Booking,Integer> {
 	
-	public boolean existsBySlotAndDate(String slot,Date date);
+	public boolean existsBySlotAndDateAndName(String slot,Date date,String name);
 	
 	List<Booking> findByName(String name);
 

@@ -47,6 +47,8 @@ public class AdminController {
 	
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+	
 
 	@GetMapping("/")
 	public String admin(Model model,Principal principal) {

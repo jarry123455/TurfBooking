@@ -26,9 +26,9 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public boolean existsBySlotAndDate(String slot,Date date) {
+	public boolean existsBySlotAndDateAndName(String slot,Date date,String name) {
 		
-		return bookingRepostory.existsBySlotAndDate(slot,date);
+		return bookingRepostory.existsBySlotAndDateAndName(slot,date,name);
 	}
 
 	

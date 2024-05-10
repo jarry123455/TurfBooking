@@ -53,6 +53,29 @@
 			</div>
 		</main>
 
+		<div class="container mt-4">
+			<div class="row">
+				<div class="col-lg-4 col-md-6" th:each="cat,c:${categories}">
+					<div class="turf-card">
+						<div class="card-body text-center">
+							<div class="turf-card-body">
+								<img th:src="@{'/img/category_img/'+${cat.imageName}}" width="120px" height="100px" />
+								<b class="turf-card-title">[[${cat.name}]]</b>
+								<p class="turf-card-text">
+									Perfect your cricket skills on our well-maintained turfs. Book
+									now and enjoy a great game!
+								</p>
+								<!--<button class="turf-card-button">Book Now</button>-->
+								<a href="/grounds" class="turf-card-button" style="text-decoration: none;">Book Now
+								</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
 		<div class="container-xxl about-section">
 			<div class="row m-4">
 				<h2 class="section-heading mb-5 text-success text-center">
@@ -80,28 +103,7 @@
 			</div>
 		</div>
 
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4 col-md-6" th:each="cat,c:${categories}">
-					<div class="turf-card">
-						<div class="card-body text-center">
-							<div class="turf-card-body">
-								<img th:src="@{'/img/category_img/'+${cat.imageName}}" width="120px" height="100px" />
-								<b class="turf-card-title">[[${cat.name}]]</b>
-								<p class="turf-card-text">
-									Perfect your cricket skills on our well-maintained turfs. Book
-									now and enjoy a great game!
-								</p>
-								<!--<button class="turf-card-button">Book Now</button>-->
-								<a href="/grounds" class="turf-card-button" style="text-decoration: none;">Book Now
-								</a>
-							</div>
-						</div>
-					</div>
 
-				</div>
-			</div>
-		</div>
 
 
 		<div class="container-xxl mt-4 contact-us">

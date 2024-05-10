@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.turf.enities.Customer;
 import com.turf.repository.CustomerRepository;
+import com.turf.service.CustomerService;
 
 @Controller
 @RequestMapping("/user")
@@ -16,6 +17,8 @@ public class UserController {
 	@Autowired
 	private CustomerRepository customerRepository;
 		
+	@Autowired
+	private CustomerService customerService;
 	
 	
 
@@ -25,10 +28,17 @@ public class UserController {
 		String name = principal.getName();
 
 		Customer customer = customerRepository.findByEmail(name);
-
+		/* model.addAttribute("customers", customerService.getAllCustomers()); */
 		model.addAttribute("customer", customer);
 		return "user/mybooking";
 	}
+	
+	/*
+	 * @GetMapping("/userbase") public String allcustomer(Model model) {
+	 * 
+	 * model.addAttribute("customers", customerService.getAllCustomers()); return
+	 * "user/userbase"; }
+	 */
 
 
 

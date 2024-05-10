@@ -12,29 +12,30 @@
 			<div class="row">
 				<div class="col-md-5 py-2 offset-md-3">
 					<div class="card shadow p-3  bg-body rounded">
-						<div class="card-header Main text-center">
-							<h3 class="text-white pt-1">Login </h3>
-							<th:block th:if="${param.error}">
-								<p class="text-center text-danger fs-5">
-									[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+						<div class="card-header Main2  text-center">
+							<h3 class="text-dark pt-1">Login Here </h3>
+							<th:block th:if="${errorMessage}">
+								<p class="text-center text-danger fw-bold fs-5">[[${errorMessage}]]</p>
 							</th:block>
+
 							<th:block th:if="${param.logout}">
-								<p class="text-center text-danger fs-5">Logout Sucessfully</p>
+								<p class="text-center text-danger fs-5">LOGOUT SUCCESSFULLY</p>
 							</th:block>
 						</div>
 						<div class="card-body">
 
-							<form action="user" method="post">
+							<form th:action="@{user}" method="post">
 								<div class="mb-3">
 									<label for="exampleInputEmail1" class="form-label">Email address</label>
 									<input type="email" class="form-control" id="exampleInputEmail1"
-										aria-describedby="emailHelp" name="username">
+										aria-describedby="emailHelp" name="username" required>
 									<div id="emailHelp" class="form-text">We'll never share your email with anyone else.
 									</div>
 								</div>
 								<div class="mb-3">
 									<label for="exampleInputPassword1" class="form-label">Password</label>
-									<input type="text" class="form-control" id="exampleInputPassword1" name="password">
+									<input type="text" class="form-control" id="exampleInputPassword1" name="password"
+										required>
 								</div>
 								<div class="container text-center">
 									<button type="submit" class="btn btn-success">Submit</button>
