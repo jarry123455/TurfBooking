@@ -14,5 +14,9 @@ public interface CustomerService {
 	public boolean deleteCustomer(int id);
 	
 	public void removeSessionMessage();
+	
+	
+	
+	public Customer getCustomerById(int id);
 
 }

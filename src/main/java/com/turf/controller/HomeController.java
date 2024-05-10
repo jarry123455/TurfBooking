@@ -62,28 +62,43 @@ public class HomeController {
 
 	@PostMapping("/saveBooking")
 	public String saveBooking(@ModelAttribute Booking booking, HttpSession session,
+
 			@RequestParam("groundId") Long groundId, RedirectAttributes redirectAttributes) {
 
 		redirectAttributes.addAttribute("id", groundId);
 
 		boolean existsBySlot = bookingService.existsBySlotAndDate(booking.getSlot(), booking.getDate());
 
-		if (existsBySlot) {
-			session.setAttribute("errMsg", "Slot  Booked Already !!!!");
-			/* return "redirect:/ground/" + booking.getGroundId(); */
-		} else {
+	        @RequestParam("groundId") int groundId, RedirectAttributes redirectAttributes) {
 
-			Booking saveBooking = bookingService.saveBooking(booking);
+	    // Retrieve the ground associated with the booking
+	    Ground ground = groundService.getGroundById(groundId);
+	    booking.setGround(ground); // Set the ground for the booking
 
-			if (!ObjectUtils.isEmpty(saveBooking)) {
-				session.setAttribute("succMsg", "Booking  Saved Successfully");
-			} else {
-				session.setAttribute("errMsg", "Someting Went Wrong");
-			}
-		}
+
+	    redirectAttributes.addAttribute("id", groundId);
+
+	    boolean existsBySlot = bookingService.existsBySlotAndDateAndName(booking.getSlot(), booking.getDate(),booking.getName());
+
+	    if (existsBySlot) {
+	        session.setAttribute("errMsg", "Slot Booked Already !!!!");
+	    } else {
+	        Booking saveBooking = bookingService.saveBooking(booking);
+
 
 		return "redirect:/ground/{id}";
+
+	        if (saveBooking != null) {
+	            session.setAttribute("succMsg", "Booking Saved Successfully");
+	        } else {
+	            session.setAttribute("errMsg", "Something Went Wrong");
+	        }
+	    }
+
+	    return "redirect:/ground/{id}";
+
 	}
+
 
 	@GetMapping("/grounds")
 	public String grounds(Model model, @RequestParam(value = "category", defaultValue = "") String category) {

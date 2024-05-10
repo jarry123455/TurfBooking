@@ -11,7 +11,7 @@ public interface BookingService {
 	
 	public Booking saveBooking(Booking booking);
 	
-	public boolean existsBySlotAndDate(String slot,Date date);
+	public boolean existsBySlotAndDateAndName(String slot,Date date,String name);
 	
 	
 			 
